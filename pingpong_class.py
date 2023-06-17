@@ -1,5 +1,4 @@
 import turtle
-import os
 
 class Window:
     def __init__(self, width, height, title, bgcolor):
@@ -35,13 +34,13 @@ class Paddle:
 class Ball:
     def __init__(self):
         self.ball = turtle.Turtle()
-        self.ball.speed(3)
+        self.ball.speed(0)
         self.ball.shape("square")
         self.ball.color("white")
         self.ball.penup()
         self.ball.goto(0, 0)
-        self.ball.dx = 2
-        self.ball.dy = 2
+        self.ball.dx = 0.2
+        self.ball.dy = 0.2
 
     def update(self):
         self.ball.setx(self.ball.xcor() + self.ball.dx)
@@ -50,12 +49,11 @@ class Ball:
         if self.ball.ycor() > 290:
             self.ball.sety(290)
             self.ball.dy *= -1
-            os.system("afplay bounce.wav&")
         
         if self.ball.ycor() < -290:
             self.ball.sety(-290)
             self.ball.dy *= -1
-            os.system("afplay bounce.wav&")
+           
 
         if self.ball.xcor() > 390:
             self.ball.goto(0, 0)
@@ -81,7 +79,7 @@ class Pen:
 
 class PingPongGame:
     def __init__(self):
-        self.window = Window(800, 600, "Maatez's PingPong Game", "black")
+        self.window = Window(800, 600, "Maatez's PingPong Game", "gray")
         self.paddle_a = Paddle(-350)
         self.paddle_b = Paddle(350)
         self.ball = Ball()
@@ -101,7 +99,6 @@ class PingPongGame:
             self.window.update()
 
             if self.ball.ball.ycor() > 290:
-                self.pen.pen.write("eiesiuisdgf")
                 self.ball.ball.sety(290)
                 self.ball.ball.dy *= -1
 
@@ -126,14 +123,12 @@ class PingPongGame:
                      self.ball.ball.ycor() > self.paddle_b.paddle.ycor() - 40):
                 self.ball.ball.setx(340)
                 self.ball.ball.dx *= -1
-                os.system("afplay bounce.wav&")
-
+              
             if (self.ball.ball.xcor() < -340 and self.ball.ball.xcor() > -350) and \
                     (self.ball.ball.ycor() < self.paddle_a.paddle.ycor() + 40 and
                      self.ball.ball.ycor() > self.paddle_a.paddle.ycor() - 40):
                 self.ball.ball.setx(-340)
                 self.ball.ball.dx *= -1
-                os.system("afplay bounce.wav&")
             
 game = PingPongGame()
 game.game_loop()

@@ -1,5 +1,5 @@
 import turtle
-import os, winsound
+import os
 
 class Window:
     def __init__(self, width, height, title, bgcolor):
@@ -51,13 +51,11 @@ class Ball:
             self.ball.sety(290)
             self.ball.dy *= -1
             os.system("afplay bounce.wav&")
-            winsound.Playsound("bounce.wav", winsound.SND_ASYNC)
         
         if self.ball.ycor() < -290:
             self.ball.sety(-290)
             self.ball.dy *= -1
             os.system("afplay bounce.wav&")
-            winsound.Playsound("bounce.wav", winsound.SND_ASYNC)
 
         if self.ball.xcor() > 390:
             self.ball.goto(0, 0)
@@ -129,7 +127,6 @@ class PingPongGame:
                 self.ball.ball.setx(340)
                 self.ball.ball.dx *= -1
                 os.system("afplay bounce.wav&")
-                winsound.Playsound("bounce.wav", winsound.SND_ASYNC)
 
             if (self.ball.ball.xcor() < -340 and self.ball.ball.xcor() > -350) and \
                     (self.ball.ball.ycor() < self.paddle_a.paddle.ycor() + 40 and
@@ -137,7 +134,6 @@ class PingPongGame:
                 self.ball.ball.setx(-340)
                 self.ball.ball.dx *= -1
                 os.system("afplay bounce.wav&")
-                winsound.Playsound("bounce.wav", winsound.SND_ASYNC)
             
 game = PingPongGame()
 game.game_loop()

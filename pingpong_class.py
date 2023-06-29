@@ -24,12 +24,12 @@ class Paddle:
 
     def move_up(self):
         y = self.paddle.ycor()
-        y += 20
+        y += 25
         self.paddle.sety(y)
 
     def move_down(self):
         y = self.paddle.ycor()
-        y -= 20
+        y -= 25
         self.paddle.sety(y)
 
 class Ball:
